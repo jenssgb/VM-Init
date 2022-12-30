@@ -33,10 +33,10 @@ Foreach ($item in $ProfileList) {
     Set-ItemProperty registry::HKEY_USERS\$($Item.SID)\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name "TaskbarAl" -Value 0 -Type Dword -Force |
         Foreach {"{0} {1}" | Write-Output}
     
-    Set-ItemProperty registry::HKEY_USERS\$($Item.SID)SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name "AppsUseLightTheme" -Value 0 -Type Dword -Force |
+    Set-ItemProperty registry::HKEY_USERS\$($Item.SID)\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name "AppsUseLightTheme" -Value 0 -Type Dword -Force |
         Foreach {"{0} {1}" | Write-Output}
 
-    Set-ItemProperty registry::HKEY_USERS\$($Item.SID)SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name "SystemUsesLightTheme" -Value 0 -Type Dword -Force |
+    Set-ItemProperty registry::HKEY_USERS\$($Item.SID)\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name "SystemUsesLightTheme" -Value 0 -Type Dword -Force |
         Foreach {"{0} {1}" | Write-Output}
     #####################################################################
  
