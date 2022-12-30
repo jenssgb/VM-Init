@@ -41,5 +41,4 @@ Start-Sleep -s 35
 # Remove the installer
 #rm -Force $workdir\Teams*
 
-./configer-ui.ps1
-
+./configer-rekeys.ps1
