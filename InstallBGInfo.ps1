@@ -1,5 +1,9 @@
-#Download the RAR Git Script:
+#
+#
+#Download THIS RAR Git Script via PowerShell: 
 #(Invoke-WebRequest -Uri "https://raw.githubusercontent.com/jenssgb/VM-Init/main/InstallBGInfo.ps1").Content | Out-File (Join-Path $PWD "InstallBGInfo.ps1")
+#
+#
 
 
 if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
@@ -25,7 +29,8 @@ Invoke-WebRequest -Uri $url -OutFile $file
 Expand-Archive -LiteralPath $file -DestinationPath $output
 
 
-#Download my BG Info Template: 
+#Download my BG Info Template: 'JensBgInfoConfig.bgi'
+
 
 
 
