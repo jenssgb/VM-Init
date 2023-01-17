@@ -2,7 +2,7 @@
 
 
 $url = "https://download.sysinternals.com/files/BGInfo.zip"
-$output = "C:\path\to\save\"
+$output = "C:\Program Files\BGInfo\"
 $file = $output + "BGInfo.zip"
 
 Invoke-WebRequest -Uri $url -OutFile $file
