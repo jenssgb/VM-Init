@@ -1,0 +1,2 @@
+#Download the RAR Git Script:
+(Invoke-WebRequest -Uri "https://raw.githubusercontent.com/jenssgb/VM-Init/main/InstallBGInfo.ps1").Content | Out-File (Join-Path $PWD "InstallBGInfo.ps1")
