@@ -6,6 +6,19 @@
 #
 
 
+# Prompt the user for confirmation before continuing
+$confirm = Read-Host -Prompt "This script will install BGInfo and create a task in the Windows Task Scheduler. Do you want to continue? (Y/N)"
+
+# Check the user's response and proceed or exit accordingly
+if($confirm -eq "N")
+{
+    Write-Host "Script execution terminated by user."
+    exit
+}
+
+
+Write-Host "Installing BGInfo..."
+
 if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
     Write-Host "Please run this script as an Administrator. Exiting the script."
     exit
@@ -31,8 +44,15 @@ Expand-Archive -LiteralPath $file -DestinationPath $output
 
 #Download my BG Info Template: 'JensBgInfoConfig.bgi'
 
+$BGTemplateURL = 'https://github.com/jenssgb/VM-Init/blob/main/BgInfo/JensBgInfoConfig.bgi?raw=true'
+$BGTemplateFile = $output + 'JensBgInfoConfig.bgi'
+
+#$BGTemplateOutput = $output
+
+Invoke-WebRequest -Uri $BGTemplateURL -OutFile $BGTemplateFile
 
 
+#Expand-Archive -LiteralPath $file -DestinationPath $output
 
 #Create the Task:
 
