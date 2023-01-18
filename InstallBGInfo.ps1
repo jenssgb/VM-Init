@@ -56,10 +56,16 @@ Invoke-WebRequest -Uri $BGTemplateURL -OutFile $BGTemplateFile
 
 #Create the Task:
 
-$action = New-ScheduledTaskAction -Execute 'C:\Program Files\BGInfo\BgInfo64.exe' -Argument 'C:\Program Files\BGInfo\JensBgInfoConfig.bgi /timer:0'
+$action = New-ScheduledTaskAction -Execute '"C:\Program Files\BGInfo\BgInfo64.exe"' -Argument '"C:\Program Files\BGInfo\JensBgInfoConfig.bgi" /timer:0'
 $trigger1 = New-ScheduledTaskTrigger -AtLogOn
-$trigger2 = New-ScheduledTaskTrigger -SessionStateChange -State "SessionConnected"
-$principal = New-ScheduledTaskPrincipal -UserId "SYSTEM" -LogonType ServiceAccount
+$trigger2 = New-ScheduledTaskTrigger -AtStartup
+$principal = New-ScheduledTaskPrincipal -UserId " $env:username " -LogonType Interactive
 Register-ScheduledTask -Action $action -Trigger $trigger1,$trigger2 -TaskName "BGInfo at Logon and Session Connect" -Principal $principal
 
+#Create a Desktop Icon:
 
+$WshShell = New-Object -ComObject WScript.Shell
+$Shortcut = $WshShell.CreateShortcut("$env:USERPROFILE\Desktop\Run BGInfo.lnk")
+$Shortcut.TargetPath = "powershell.exe"
+$Shortcut.Arguments = "-Command schtasks.exe /run /tn 'BGInfo at Logon and Session Connect'"
+$Shortcut.Save()
